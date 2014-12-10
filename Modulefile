@@ -4,8 +4,9 @@ source 'UNKNOWN'
 author 'neo4j'
 license 'Apache License, Version 2.0'
 summary 'UNKNOWN'
-description 'UNKNOWN'
-project_page 'UNKNOWN'
+description 'Installs Neo4j on Debian/Ubuntu systems'
+project_page 'https://github.com/simpsonjulian/neo4j-puppet'
 
 ## Add dependencies, if any:
-# dependency 'username/name', '>= 1.2.0'
+dependency 'puppetlabs/apt', '>= 1.7.0'
+dependency 'puppetlabs/java', '>= 1.2.0'
