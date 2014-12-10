@@ -15,10 +15,17 @@ Features
 * Installs Neo4j enterprise from stable Debian packages
 * Installs suitable JVM
 
+Limitations
+-----------
+* Only 1 Neo4j database is supported
+* Not tested with Hiera yet
+
 Usage
---------------
+-----
 ```
-class { neo4j: }
+class { neo4j:
+  data_dir => undef
+}
 ```
 
 License

@@ -22,7 +22,9 @@
 #
 # Copyright 2012-2014 Neo Technology Inc.
 #
-class neo4j::ubuntu {
+class neo4j::ubuntu(
+  $data_dir = undef
+  ){
 
   apt::source {
     'neo4j_stable':
@@ -72,6 +74,13 @@ class neo4j::ubuntu {
       owner    => neo4j,
       notify   => Service['neo4j-service'],
       group    => adm;
+
+    ['/var/lib/neo4j', '/var/lib/neo4j/data']:
+      ensure   => directory;
+  }
+
+  class {
+    'neo4j::data_store': data_dir => $data_dir
   }
 
 }
