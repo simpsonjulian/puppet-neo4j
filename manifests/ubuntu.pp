@@ -26,6 +26,8 @@ class neo4j::ubuntu(
   $data_dir = undef
   ){
 
+  include '::apt'
+
   apt::source {
     'neo4j_stable':
       comment     => 'Neo4j Stable',

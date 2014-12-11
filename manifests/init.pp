@@ -35,10 +35,9 @@ class neo4j(
       You can raise a GitHub issue on neo4j-contrib/neo4j-puppet if you like')}
   }
 
+  include java
+
   class {
-    'apt':;
-    'java':
-      distribution => 'jre';
     'neo4j::linux':;
   }
 }
