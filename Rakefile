@@ -1,5 +1,7 @@
 task :default do
-  sh "puppet parser validate manifests/*.pp"
+  Dir['manifests/*.pp'].each do |manifest|
+    sh "puppet parser validate #{manifest}"
+  end
   sh "puppet-lint manifests/*.pp"
 end
 

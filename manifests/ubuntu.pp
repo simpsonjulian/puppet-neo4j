@@ -1,11 +1,10 @@
 # == Class: neo4j::ubuntu
 #
-# Everything you need to get Neo4j running on Ubuntu.  This first draft is meant to be self-contained for first
-# time users, we'll see what we can do to make a module that can be user by the Puppet Forge community.
+# Everything you need to get Neo4j running on Ubuntu.  
 #
 # === Parameters
 #
-# None.
+# data_dir = where to store the graph data
 #
 # === Variables
 # None.
@@ -54,18 +53,22 @@ class neo4j::ubuntu(
   }
   exec {
     'bump the minimum heap size':
-      command     => '/bin/echo "wrapper.java.initmemory=1024" >> /etc/neo4j/neo4j-wrapper.conf',
+      command     => '/bin/echo "wrapper.java.initmemory=1024" >> \
+      etc/neo4j/neo4j-wrapper.conf',
       refreshonly => true,
       require     => Package['neo4j-enterprise'],
       notify      => Service['neo4j-service'],
-      unless      => '/bin/grep "^wrapper.java.initmemory" /etc/neo4j/neo4j-wrapper.conf 2>/dev/null';
+      unless      => '/bin/grep "^wrapper.java.initmemory" \
+      /etc/neo4j/neo4j-wrapper.conf 2>/dev/null';
 
     'bump the maximum heap size':
-      command     => '/bin/echo "wrapper.java.maxmemory=4096" >> /etc/neo4j/neo4j-wrapper.conf',
+      command     => '/bin/echo "wrapper.java.maxmemory=4096" >> \
+      /etc/neo4j/neo4j-wrapper.conf',
       refreshonly => true,
       require     => Package['neo4j-enterprise'],
       notify      => Service['neo4j-service'],
-      unless      => '/bin/grep "^wrapper.java.maxmemory" /etc/neo4j/neo4j-wrapper.conf 2>/dev/null';
+      unless      => '/bin/grep "^wrapper.java.maxmemory" \
+      /etc/neo4j/neo4j-wrapper.conf 2>/dev/null';
   }
 
   file {
